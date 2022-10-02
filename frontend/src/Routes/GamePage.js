@@ -51,7 +51,7 @@ const GamePage = ({nameUser}) => {
   return (
     <div>
       <h1>Welcome {nameUser}!</h1>
-      <div>
+      <div className="allCardsGame">
         {cardForGame.map((card, index) => {
           return (
             <img onClick={() => clickCard(card.id)} className="cardImg" key={index} src={card.src} id={card.id} alt={card.alt} />

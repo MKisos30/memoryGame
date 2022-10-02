@@ -1,4 +1,14 @@
+.allCardsGame {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    justify-items: center;
+    align-items: center;
+
+
+
+}
+
 .cardImg {
-    width: 20%;
-    
+    width: 70%;
+    margin: 1%;
 }
