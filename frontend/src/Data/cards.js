@@ -64,5 +64,10 @@ exports.gameCards = [
         src: "/pict/MACABI-TEL-AVIV.png",
         id: "14",
         alt: "MACABI-TEL-AVIV",
+    },
+    {
+        src: "/pict/ISRAEL-FOOTBALL.png",
+        id: "15",
+        alt: "ISRAEL-FOOTBALL.png",
     }
 ]

@@ -34,7 +34,6 @@ const GamePage = ({nameUser}) => {
   }
   
   const checkCards = (playerCards) => {
-    console.log(playerCards)
     if(playerCards.length===2) {
       if ( playerCards[0] === playerCards[1]) {
         alert('It is same')
@@ -54,7 +53,10 @@ const GamePage = ({nameUser}) => {
       <div className="allCardsGame">
         {cardForGame.map((card, index) => {
           return (
-            <img onClick={() => clickCard(card.id)} className="cardImg" key={index} src={card.src} id={card.id} alt={card.alt} />
+            <div>
+              <img onClick={() => clickCard(card.id)} className="cardImg" key={index} src={card.src} id={card.id} alt={card.alt} />
+              <div></div>
+            </div>
           )
         })}
       </div>
