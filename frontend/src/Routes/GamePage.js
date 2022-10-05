@@ -53,9 +53,9 @@ const GamePage = ({nameUser}) => {
       <div className="allCardsGame">
         {cardForGame.map((card, index) => {
           return (
-            <div>
+            <div id={card.id}>
               <img onClick={() => clickCard(card.id)} className="cardImg" key={index} src={card.src} id={card.id} alt={card.alt} />
-              <div></div>
+              <img id={card.id} className="ballFootball" src="/pict/BALL-FOOTBALL.jpeg" alt="BALL-FOOTBALL" />
             </div>
           )
         })}
