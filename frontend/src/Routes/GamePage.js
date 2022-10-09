@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { gameCards } from '../Data/cards';
 
 const GamePage = ({nameUser}) => {
@@ -25,27 +25,38 @@ const GamePage = ({nameUser}) => {
 
   let userCarDChoose = []
 
-  const clickCard = (id) => {
+  const clickCard = (id, index) => {
+    const cardChoosenByUser = document.getElementById(index)
+    console.log(cardChoosenByUser)
     if (userCarDChoose.length === 0 || userCarDChoose.length === 1) {
-            //להפוך את הכרטיסים
-      userCarDChoose.push(id)
-      checkCards(userCarDChoose)
+      cardChoosenByUser.classList.toggle('flip')
+      userCarDChoose.push(cardChoosenByUser)
+      checkCards(userCarDChoose, index)
     } 
   }
   
   const checkCards = (playerCards) => {
+ 
+    console.log(playerCards[0].getAttribute("data-id"))
+    console.log(playerCards[1].getAttribute("data-id"))
+
     if(playerCards.length===2) {
-      if ( playerCards[0] === playerCards[1]) {
-        alert('It is same')
+      if(playerCards[0].getAttribute("data-id") === playerCards[1].getAttribute("data-id")){
+        setTimeout(()=>{
+          playerCards[0].style.opacity = "0"
+          playerCards[1].style.opacity = "0"
+        },500)
       } else {
-        alert('It is diffrent')
+        setTimeout(()=>{
+          playerCards[0].classList.toggle("flip")
+          playerCards[1].classList.toggle("flip")
+        }, 500)
       }
-      userCarDChoose = []
-    } 
-    // else {
-    //   console.log('it is false, need to rotate back')
-    // } 
+      userCarDChoose=[]
+    }
   }
+
+
 
   return (
     <div>
@@ -53,18 +64,14 @@ const GamePage = ({nameUser}) => {
       <div className="allCardsGame">
         {cardForGame.map((card, index) => {
           return (
-            <div className="cardsGame" id={card.id}>
-              <img className="cardImg"
-                onClick={() => clickCard(card.id)}
-                key={index}
-                src={card.src}
-                id={card.id}
-                alt={card.alt} />
-                flipped={clickCard}
-              <img className="ballFootball"
-                id={card.id}
-                src="/pict/BALL-FOOTBALL.jpeg"
-                alt="BALL-FOOTBALL" />
+            <div key={index} className="cardsGame" data-id={card.id} id={index}
+              onClick={() => clickCard(card.id, index)}>
+              <div className="cardGameBack"></div>
+              <div className="cardGameFront">
+                <img 
+                  src={card.src}
+                  alt={card.alt} />
+              </div>
             </div>
           ) 
         })}
