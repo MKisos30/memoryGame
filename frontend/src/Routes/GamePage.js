@@ -53,11 +53,20 @@ const GamePage = ({nameUser}) => {
       <div className="allCardsGame">
         {cardForGame.map((card, index) => {
           return (
-            <div id={card.id}>
-              <img onClick={() => clickCard(card.id)} className="cardImg" key={index} src={card.src} id={card.id} alt={card.alt} />
-              <img id={card.id} className="ballFootball" src="/pict/BALL-FOOTBALL.jpeg" alt="BALL-FOOTBALL" />
+            <div className="cardsGame" id={card.id}>
+              <img className="cardImg"
+                onClick={() => clickCard(card.id)}
+                key={index}
+                src={card.src}
+                id={card.id}
+                alt={card.alt} />
+                flipped={clickCard}
+              <img className="ballFootball"
+                id={card.id}
+                src="/pict/BALL-FOOTBALL.jpeg"
+                alt="BALL-FOOTBALL" />
             </div>
-          )
+          ) 
         })}
       </div>
     </div>
