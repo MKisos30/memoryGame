@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
     BrowserRouter,
     Routes,
@@ -8,14 +7,11 @@ import GamePage from "./GamePage";
 import Login from "./Login";
 
 const RoutesPage = () => {
-  const [nameUser, setNameUser] = useState('')
-  console.log(nameUser)
-
   return (
     <BrowserRouter>
         <Routes>
-            <Route path="/" element={<Login setNameUser={setNameUser} />} />
-            <Route path="game" element={<GamePage nameUser={nameUser} />} />
+            <Route path="/" element={<Login />} />
+            <Route path="game" element={<GamePage />} />
         </Routes>
     </BrowserRouter>
   )

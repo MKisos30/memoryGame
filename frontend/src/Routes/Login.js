@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 
-const Login = ({setNameUser}) => {
+const Login = () => {
   const navigate = useNavigate()
 
   function isEmpty(str) {
@@ -17,7 +17,10 @@ const Login = ({setNameUser}) => {
      if(isEmpty(userName)) {
        alert("name can't be empty")
      } else {
-       setNameUser(userName)
+       const name = localStorage.getItem("name")
+       if (!name) {
+         localStorage.setItem("name", userName)
+       }
        navigate('/game') // -> create the arr of cards -> map it
      }
   }

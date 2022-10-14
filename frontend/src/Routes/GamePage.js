@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { gameCards } from '../Data/cards';
 
-const GamePage = ({nameUser}) => {
+const GamePage = () => {
   const [cardForGame, setCardForGame] = useState([])
+  const [score, setScore] = useState(0)
+  const [nameUser, setNameUser] = useState(localStorage.getItem('name'))
 
   function newArrCard() {
     const cards = [];
-
-    //const countOfcopies = 2
 
     for (let i = 0; i < 2; i++){
       for (let j = 0; j < gameCards.length; j++) {
@@ -42,39 +42,68 @@ const GamePage = ({nameUser}) => {
 
     if(playerCards.length===2) {
       if(playerCards[0].getAttribute("data-id") === playerCards[1].getAttribute("data-id")){
-        setTimeout(()=>{
-          playerCards[0].style.opacity = "0"
-          playerCards[1].style.opacity = "0"
-        },500)
+        // setTimeout(()=>{
+        //   playerCards[0].style.opacity = "0"
+        //   playerCards[1].style.opacity = "0"
+        // },500)
+        setScore(score + 1)
       } else {
         setTimeout(()=>{
           playerCards[0].classList.toggle("flip")
           playerCards[1].classList.toggle("flip")
         }, 500)
       }
+      
       userCarDChoose=[]
     }
   }
+  
+  useEffect(()=>{
+    
+    if(score>0) {
+      if(cardForGame.length/2===score) {
+        setTimeout(()=>{
+            const cardsGame = document.querySelector(".allCardsGame")
+            const winGame = document.querySelector(".winGame")
 
+            cardsGame.classList.add("displayNoneCardsGame")
+            winGame.classList.add("displayWinBlock")
+            
+        },500)
+      }
+    }
+  },[score])
+
+  const handlePlayAgain = () => {
+    window.location.reload()
+  }  
 
 
   return (
     <div>
       <h1>Welcome {nameUser}!</h1>
-      <div className="allCardsGame">
+      <div>score: {score}</div>
+      <div className='allCardsGame'>
         {cardForGame.map((card, index) => {
           return (
-            <div key={index} className="cardsGame" data-id={card.id} id={index}
-              onClick={() => clickCard(card.id, index)}>
-              <div className="cardGameBack"></div>
-              <div className="cardGameFront">
-                <img 
+            <div
+              key={index}
+              data-id={card.id} id={index}
+              onClick={() => clickCard(card.id, index)}
+              className="cardsGame">
+              <div className='cardGameBack'></div>
+              <div className='cardGameFront'>
+                <img
                   src={card.src}
                   alt={card.alt} />
               </div>
             </div>
-          ) 
+          )
         })}
+      </div>
+      <div className="winGame">
+        <h2>You win!</h2>
+        <button onClick={handlePlayAgain}>Play again</button>
       </div>
     </div>
   )
