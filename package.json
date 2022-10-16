@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/MKisos30/memoryGame#readme",
   "dependencies": {
-    "express": "^4.18.1"
+    "express": "^4.18.1",
+    "path": "^0.12.7"
   }
 }
