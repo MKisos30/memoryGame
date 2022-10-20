@@ -26,9 +26,9 @@ const Login = () => {
   }
   
   return (
-    <div>
-      <form onSubmit={handleGetUserName}>
-        <input name="userName" type="text" placeholder="Enter your name" />
+    <div className="loginPage">
+      <form className="formLogin" onSubmit={handleGetUserName}>
+        <input className="nameInput" name="userName" type="text" placeholder="Enter your name" />
         <button type="submit" >Start</button>
       </form>
     </div>
