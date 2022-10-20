@@ -6,6 +6,16 @@ const GamePage = () => {
   const [score, setScore] = useState(0)
   const [nameUser, setNameUser] = useState(localStorage.getItem('name'))
 
+  useEffect(() => {
+    (()=>{
+      const body= document.body;
+      console.log(body)
+      body.style =
+        "    background:linear-gradient(0deg, rgb(250, 149, 112)  0%, rgb(63, 152, 96) 100%) no-repeat fixed;";
+    })()
+  }, []);
+
+
   function newArrCard() {
     const cards = [];
 
@@ -80,9 +90,11 @@ const GamePage = () => {
 
 
   return (
-    <div>
-      <h1>Welcome {nameUser}!</h1>
-      <div>score: {score}</div>
+    <div className="pageGame">
+      <div className="gamePageHeader">
+        <h1>Welcome {nameUser}!</h1>
+        <div>score: {score}</div>
+      </div>
       <div className='allCardsGame'>
         {cardForGame.map((card, index) => {
           return (

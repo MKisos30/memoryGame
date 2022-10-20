@@ -2,5 +2,11 @@
     box-sizing: border-box;
 }
 
+body {
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
 @import './Style/GamePage.css';
 @import './Style/Login.css'
